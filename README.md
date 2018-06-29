@@ -9,3 +9,4 @@ Ein paar git regeln:
 - nur in seinen teil der formelsammlung sachen ändern.
 - wenn man sich nicht an diese regeln halten will macht man eine eigene branch.
 - kein force merge im master branch!!!
+=> siehe https://git-scm.com/doc
