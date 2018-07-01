@@ -147,25 +147,31 @@
 	\subsection{Linear Alternative Tests}
 	
 	Estimate normal vector $\vec w^\top$ and $w_0$, which separate $\mathbb X$ into $\mathbb X_0$ and $\mathbb X_1$\\
-	$\log R(\vec x) = \frac{\ln(\det(\ma C_0))}{\ln(\det(\ma C_1))} + \frac{1}{2}(\vec x- \vec{μ}_0)^\top\ma C_0^{-1}(\vec x- \vec{μ}_0) -$ \\ $-\frac{1}{2}(\vec x- \vec{μ}_1)^\top\ma C_1^{-1}(\vec x- \vec{μ}_1) = 0$\\\\
-	\textbf{For 2 Gaussians}, with $\ma C_0 = \ma C_1= \ma C \implies \log R(\vec x) = \vec w^\top \vec x - w_0$:\\
-	$\vec w^\top = (\vec {μ}_1 - \vec{μ}_0)^\top \ma C$\quad (Normal Vector)\\
-	$w_0 = \frac{(\vec {μ}_1 - \vec{μ}_0)^\top \ma C (\vec {μ}_1 - \vec{μ}_0)}{2}$\quad (Constant Translation)\\
-	$\implies T: \mathbb X \ra \R, \vec x \mapsto \begin{cases} 1 & \vec w^\top \vec x - w_0 > 0 \\ 0 & \text{otherwise}\end{cases}$ (Affine Decision Rule)
-	
-	
-	% Bild aus Part7 p 197!!!
-	\includegraphics[width = \columnwidth]{linest2}
-	
+	$\log R(\vec x) = -\frac{1}{2}\ln(\frac{\det(\ma C_1)}{\det(\ma C_0)}) - \frac{1}{2}(\vec x- \vec{μ}_1)^\top\ma C_1^{-1}(\vec x- \vec{μ}_1) +\\+\frac{1}{2}(\vec x- \vec{μ}_0)^\top\ma C_0^{-1}(\vec x- \vec{μ}_0) + \ln(\frac{P(\theta\in\Theta_1)}{P(\theta\in\Theta_0)})= 0$, (sep. surf.)\\\\
 	For Gaussian $f_X(x; \mu_k, C_k)$ with $θ_0$ and $θ_1$ corresponding to $\{\mu_0,C_0\}$ and $\{\mu_1, C_1\}$, it follows that
 	\begin{itemize}
 		\item if $C_0 \ne C_1$, $logR(x) = 0$ is non-linear and the separating surfaces are surfaces of second order:
 		parabolic, hyperbolic, or elliptic surfaces.
 		\item if $C_0 = C_1$, $logR(x) = 0$ is affine and thus defines a hyperplane in $\mathbb{X}$ which decomposes $\mathbb{X}$ into $\mathbb{X}_0$ and $\mathbb{X}_1$, i.e.,\\
 		$T: \mathbb X \ra \R, \vec x \mapsto \begin{cases} 1 & \vec w^\top \vec x > w_0\\ 0 & \text{otherwise}\end{cases}$\\
+		\begin{itemize}
+			\item case 1: $\ma C_0 = \ma C_1 = \sigma^2\ma I_N$\\
+			$\vec w^\top = (\vec\mu_1-\vec\mu_0)^\top,\\
+			w_0= \frac{1}{2}(\vec\mu_1^\top\vec\mu_1-\vec\mu_0^\top\vec\mu_0) -\sigma^2\ln(\frac{P(\theta\in\Theta_1)}{P(\theta\in\Theta_0)})$\\
+			$\vec w$ colinear with $(\vec \mu_1-\vec \mu_0)\\\implies \text{hyperplane orthogonal to } (\vec \mu_1-\vec \mu_0)$ 
+			\item case 2: $\ma C_0 = \ma C_1 = \ma C$\\
+			$\vec w^\top = (\vec\mu_1-\vec\mu_0)^\top\ma C^{-1},\\
+			w_0= \frac{1}{2}(\vec {μ}_1 - \vec{μ}_0)^\top \ma C^{-1} (\vec {μ}_1 + \vec{μ}_0) -	\ln(\frac{P(\theta\in\Theta_1)}{P(\theta\in\Theta_0)})$\\
+			in general $\vec w$ \textbf{not} colinear with $(\vec \mu_1-\vec \mu_0)\\\implies \text{hyperplane \textbf{not} orthogonal to } (\vec \mu_1-\vec \mu_0)$ 
+		\end{itemize}
 		\item if $C_0 = C_1$ and $\mu_0 = −\mu_1$, $log R(x) = 0$ is linear and defines a separating hyperplane in $\mathbb{X}$ which contains the origin, i.e.,\\
 		$T: \mathbb X \ra \R, \vec x \mapsto \begin{cases} 1 & \vec w^\top \vec x > 0\\ 0 & \text{otherwise}\end{cases}$\\
 	\end{itemize}
+	
+	
+	% Bild aus Part7 p 197!!!
+	\includegraphics[width = \columnwidth]{linest2}
+	
 \end{sectionbox}
 
 
