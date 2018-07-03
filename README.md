@@ -23,7 +23,7 @@ siehe [Git-Docs](https://git-scm.com/doc) - für den Umgang mit git
 
 ### Struktur
 
-- Alle Sektionen werden in [SPML.tex](SPML.t1ex) zusammengeführt
+- Alle Sektionen werden in [SPML.tex](SPML.tex) zusammengeführt
 
-- Neue Sektionen bekommen ein eigenes Dokument - große Sektionen können innerhalb des [Sections](Sections) Ordners einen Unterordner (`Sections/\<section\>/`) bekommen (Zusammenführung dann in `Sections/\<section\>.tex`)
+- Neue Sektionen bekommen ein eigenes Dokument - große Sektionen können innerhalb des [Sections](Sections) Ordners einen Unterordner (`Sections/<section>/`) bekommen (Zusammenführung dann in `Sections/<section>.tex`)
 - Weitere Unterordner bei Bedarf
