@@ -1,0 +1,54 @@
+\section{Gaussian Stuff}
+
+\begin{sectionbox}
+	\subsection{Gaussian Channel}
+	Channel: $\Y = h s_i + \textit N$ with $h \sim \mathcal N, \textit N \sim \mathcal N$\\
+	$L(y_1,...,y_N) = \prod\limits_{i=1}^n f_{\Y_i}(y_i, h)$\\
+	$f_{\Y_i}(y_i, h) = \frac{1}{\sqrt{2 \pi} \sigma}\exp\left( - \frac{1}{2 \sigma^2} (y_i - hs_i)^2 \right)$\\
+	$\hat h_{ML} = \underset{h}{\operatorname{argmin}} \{\norm{\vec y - h \vec s}^2 \} = \frac{\vec s^\top \vec y}{\vec s^\top \vec s}$\\
+	\\
+	If multidimensional channel: $\vec y = \ma S \vec h + \vec n$:\\
+	$L(\vec y, \vec h) =  \frac{1}{\sqrt{\det(2 \pi \ma C)}}\exp\left( - \frac{1}{2} (\vec y - \ma S \vec h)^\top\ma C^{-1}(\vec y - \ma S \vec h) \right)$\\
+	$l(\vec y, \vec h) =  \frac{1}{2} \left( \log(\det(2 \pi \ma C) - (\vec y - \ma S \vec h)^\top\ma C^{-1}(\vec y - \ma S \vec h) \right)$\\
+	\\
+	$\frac{\diff}{\diff h} (\vec y - \ma S \vec h)^\top\ma C^{-1}(\vec y - \ma S \vec h) = −2 \ma S^\top \ma C^{−1}(\vec y − \ma S\vec h)$
+
+
+	\textbf{Gaussian Covariance:} if $\Y \sim \mathcal N(0,σ^2), \textit N \sim \mathcal N(0,σ^2)$:\\
+	$\ma C_{\Y} = \Cov[\Y,\Y] = \E[(\Y-μ)(\Y-μ)^\top] = \E[\Y\Y^\top]$\\
+	For Channel $\Y = S h + \textit N$: $\E[\Y\Y^\top] = S\E[h h^\top]S^\top + \E[\textit N \textit N^\top]$
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Multivariate Gaussian Distributions}
+	A vector $\vx$ of $n$ independent Gaussian random variables $\x_i$ is jointly Gaussian.
+	If $\vx \sim \mathcal N(\vec \mu_{\vx}, \ma C_{\vx})$:\\
+	\begin{emphbox}
+		$f_{\vx}(\vec x) = f_{\x_1,...,\x_n}(\x_1,...,\x_n) =$ \\[1em] $= \frac{1}{\sqrt{\det(2 π \ma C_{\vx})}} \exp \left( - \frac{1}{2}\left(\vec x - \vec {μ}_{\vx}\right)^\top \ma C_{\vx}^{-1}\left(\vec x - \vec {μ}_{\vx}\right) \right)$\\
+	\end{emphbox}
+
+	Affine transformations $\vy = \ma A \vx + \vec b$ are jointly Gaussian with\\
+	$\vy \sim \mathcal N(\ma A \vec \mu_{\vx} + \vec b, \ma A \ma C_{\vx} \ma A^\top) $\\
+	All marginal PDFs are Gaussian as well
+
+	\textbf{Contour Lines}\\
+	Ellipsoid with central point $\E[\vec y]$ and main axis are the eigenvectors of $\ma C_{\vec y}^{-1}$\\
+
+	\subsection{Conditional Gaussian}
+	$\VA\!\sim\!\mathcal N(\vec {μ}_{\VA}, \ma C_{\VA}), \VB\!\sim\!\mathcal N(\vec{μ}_{\VB}, \ma C_{\VB})$ \\
+		$\Ra (\VA| \VB\!=\!b) \sim \mathcal N(\vec{μ}_{\VA|\VB},\ma C_{\VA|\VB})$\\
+	\\
+	\textbf{Conditional Mean:}\\
+	$\E[\VA|\VB = \vec b] = \vec{μ}_{\VA|\VB=\vec b} = \vec{μ}_{\VA} + \ma C_{\VA\VB}\;\ma C_{\VB\VB}^{-1} \left(\vec b - \vec{μ}_{\VB} \right)$\\
+	\\
+	\textbf{Conditional Variance:}\\
+	$\ma C_{\VA|\VB} = \ma C_{\VA\VA} - \ma C_{\VA\VB}\;\ma C_{\VB\VB}^{-1}\;\ma C_{\VB\VA}$
+\end{sectionbox}
+
+
+
+\begin{sectionbox}
+	\subsection{Misc}
+	If CDF of gaussian distribution given $Φ(z) \sim \mathcal N(0,1)$ then for $\X \sim \mathcal N(1,1)$ the CDF is given as $Φ(x - μ_x)$
+\end{sectionbox}

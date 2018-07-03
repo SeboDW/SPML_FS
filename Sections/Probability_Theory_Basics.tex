@@ -1,0 +1,103 @@
+\section{Probability Theory Basics}
+% ======================================================================
+
+
+\begin{sectionbox}
+	\subsection{Kombinatorik}
+	Mögliche Variationen/Kombinationen um $k$ Elemente von maximal $n$ Elementen zu wählen bzw. $k$ Elemente auf $n$ Felder zu verteilen:\\
+	\begin{tablebox}{l|cc}
+		& \large Mit Reihenfolge & \large Reihenfolge egal\\ \cmrule
+		%& ungleiche Elemente & gleiche Elemente \\
+		\large Mit Wiederholung & \large $n^k$ & \Large $\binom{n+k-1}{k}$\\[0.2em]
+		\large Ohne Wiederholung & \Large $\frac{n!}{(n-k)!}$ & \Large $\binom nk$\\
+	\end{tablebox}
+	Permutation von $n$ mit jeweils $k$ gleichen Elementen: $\frac{n!}{k_1 ! \cdot k_2 ! \cdot ...}$\\
+	Binomialkoeffizient $\binom nk = \binom n{n-k} = \frac{n!}{k! \cdot (n-k)!}$\\
+	$\binom n0 = 1$ \quad $\binom n1 = n$ \quad $\binom 42 = 6$ \quad $\binom 52 = 10$ \quad $\binom 62 = 15$
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Der Wahrscheinlichkeitsraum $(\Omega,\mathbb F,\P)$}
+	\begin{tablebox}{lll}
+		\textbf{Ergebnismenge} & $\Omega = \eset{\omega_1,\omega_2, ...}$ & Ergebnis $\omega_j \in \Omega$\\[0.5em]
+		\textbf{Ereignisalgebra} & $\mathbb F = \eset{A_1,A_2,...}$ & Ereignis $A_i \subseteq \Omega$\\
+		\textbf{Wahrscheinlichkeitsmaß} & $\P:\mathbb F \ra [0,1]$ & $\P(A) = \frac{|A|}{|\Omega|}$\\
+	\end{tablebox}
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Wahrscheinlichkeitsmaß $\P$}
+	$\P(A) = \frac{|A|}{|\Omega|}$ \hfill $\P(A \cup B) = \P(A) + \P(B) - \P(A \cap B)$\\
+	\subsubsection{Axiome von Kolmogorow}
+	\begin{tabular}{ll}
+		Nichtnegativität: & $\P(A) \geq 0 \Ra \P:\mathbb F \mapsto [0,1]$ \\
+		Normiertheit: & $\P(\Omega) = 1$ \\
+		Additivität: & $\P\left(\bigcup\limits_{i=1}^{\infty} A_i \right) = \sum\limits_{i=1}^{\infty} \P(A_i)$, \\
+		& wenn $A_i \cap A_j = \emptyset$, $\forall i \neq j$ \\
+	\end{tabular}
+\end{sectionbox}
+
+\begin{sectionbox}
+	\subsection{Bedingte Wahrscheinlichkeit}
+	Bedingte Wahrscheinlichkeit für $A$ falls $B$ bereits eingetreten ist:\\
+	$\P_B(A) = \P(A|B) = \frac{\P(A \cap B)}{\P(B)}$ %\qquad\quad $\P(B|A) = \P(A|B) \frac{\P(B)}{\P(A)}$\\
+
+	\subsubsection{Totale Wahrscheinlichkeit und Satz von Bayes}
+	Es muss gelten: $\bigcup\limits_{i \in I} B_i = \Omega$ für $B_i \cap B_j = \emptyset$, $\forall i \neq j$ \\
+	\begin{tabular}{ll}
+		Totale Wahrscheinlichkeit: & $\P(A) = \sum\limits_{i \in I} \P(A|B_i)\P(B_i)$\\
+		Satz von Bayes: & $\P(B_k | A) = \frac{\P(A | B_k)\P(B_k)}{\sum\limits_{i \in I} \P(A|B_i) \P(B_i)}$\\
+	\end{tabular}
+
+	\textbf{Multiplikationssatz:} 	$\P(A \cap B) = \P(A|B)\P(B) = \P(B|A)\P(A)$
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Zufallsvariable}
+	$\X : \Omega \mapsto \Omega'$ ist Zufallsvariable, wenn für jedes Ereignis $A' \in \F'$  \\
+	im Bildraum ein Ereignis $A$ im Urbildraum $\F$ existiert, \\
+	sodass $\left\{\omega \in \Omega|\X(\omega) \in A'\right\} \in \F$
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Distribution}
+		\begin{tablebox}{lll}
+			Bezeichnung  & Abk. & Zusammenhang\\ \cmrule
+	Wahrscheinlichkeitsdichte & pdf & $f_{\X}(x) = \frac{\diff F_{\X}(x)}{\diff x}$\\
+	Kumulative Verteilungsfkt. & cdf & $F_{\X}(x) = \int\limits_{-\infty}^{x}{f_{\X}(\xi)\diff\xi}$ \\
+		\end{tablebox}
+	Joint CDF: $F_{\X,\Y}(x,y) = \P(\{\X \le x, \Y \le y\})$
+\end{sectionbox}
+
+\begin{sectionbox}
+	\subsection[Relations]{Relations between $f_{\X}(x), f_{\X,\Y}(x,y), f_{\X|\Y}(x|y)$}
+	\begin{emphbox}
+		$\underset{\text{Joint PDF}}{f_{\X,\Y}(x,y)} = f_{\X|\Y}(x,y) f_{\Y}(y) = f_{\Y|\X}(y,x) f_{\X}(x)$\\
+		$\underbrace{\int\limits_{-\infty}^{\infty} f_{\X,\Y}(x,ξ) \diff ξ}_{\text{Marginalization}} = \underbrace{\int\limits_{-\infty}^{\infty} f_{\X|\Y}(x,ξ)f_{\Y}(ξ) \diff ξ}_{\text{Total Probability}} = f_{\X}(x)$
+	\end{emphbox}
+\end{sectionbox}
+
+\begin{sectionbox}
+	\subsection{Bedingte Zufallsvariablen}
+	\begin{tabular}{ll}
+		Ereignis A gegeben: & $F_{\X|A}(x|A) = \P\left(\eset{\X \le x} | A\right)$\\
+		ZV $\Y$ gegeben: & $F_{\X|\Y}(x|y)= \P\left(\eset{\X \le x} | \eset{\Y = y}\right)$\\
+		& $p_{\X|\Y}(x|y) = \frac{p_{\X,\Y}(x,y)}{p_{\Y}(y)}$\\
+		& $f_{\X|\Y}(x|y) = \frac{f_{\X,\Y}(x,y)}{f_{\Y}(y)} = \frac{\diff F_{X|Y}(x|y)}{\diff x}$\\
+	\end{tabular}
+
+\end{sectionbox}
+
+\begin{sectionbox}
+	\subsection{Unabhängigkeit von Zufallsvariablen}
+	$\X_1,\shdots,\X_n$ sind stochastisch unabhängig, wenn für jedes $\vec{x} \in \R^n$ gilt:\\
+	\begin{tabular}{l}
+		$F_{\X_1,\shdots,\X_n}(x_1,\shdots,x_n) = \prod\limits_{i=1}^{n}{F_{\X_i}(x_i)}$\\
+		$p_{\X_1,\shdots,\X_n}(x_1,\shdots,x_n) = \prod\limits_{i=1}^{n}{p_{\X_i}(x_i)}$\\
+		$f_{\X_1,\shdots,\X_n}(x_1,\shdots,x_n) = \prod\limits_{i=1}^{n}{f_{\X_i}(x_i)}$\\
+	\end{tabular}
+\end{sectionbox}

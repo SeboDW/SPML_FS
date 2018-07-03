@@ -1,0 +1,66 @@
+\section{Wichtige Parameter}
+% ======================================================================
+\begin{sectionbox}
+	\subsection{Erwartungswert (1. zentrales Moment)}
+	gibt den mittleren Wert einer Zufallsvariablen an
+
+	\begin{emphbox}
+		$μ_{\X} = \E [\X] = \underset{\text{diskrete} \X:\Omega \ra \Omega'}{\sum\limits_{x \in \Omega'} x \cdot \P_{\X}(x)} \quad \stackrel{\wedge}{=}\quad \underset{\text{stetige} \X: \Omega \ra \R}{\int \limits_{\R} x \cdot f_{\X} (x) \diff x}$
+	\end{emphbox}
+	$\E[\alpha \X + \beta \Y] = \alpha \E [\X] + \beta \E[\Y]$ \hfill $\X \le \Y \Ra \E[\X] \le \E[\Y]$\\
+	$\E[X^2] = \Var[X] + \E[X]^2$ \\
+	$\E[\X\Y] = \E[\X] \E[\Y]$, falls $\X$ und $\Y$ stochastisch unabhängig\\
+	Umkehrung nicht möglichich: Unkorrelliertheit $\not \Ra$ Stoch. Unabhängig! \\
+
+	\subsubsection{Für Funktionen von Zufallsvariablen $g(x)$}
+	$\E[g(\X)] = \sum \limits_{x \in \Omega'} g(x) \P_{\X} (x)\quad \stackrel{\wedge}{=}\quad \int \limits_{\R} g(x) f_X (x) \diff x$
+
+\end{sectionbox}
+
+
+
+\begin{sectionbox}
+\subsection{Varianz (2. zentrales Moment)}
+	ist ein Maß für die Stärke der Abweichung vom Erwartungswert
+	\begin{emphbox}
+		$σ_{\X}^2 = \Var [X] = \E \big[(\X - \E[\X])^2\big] = \E[\X^2] - \E[\X]^2$
+	\end{emphbox}
+	$\Var [ \alpha \X + \beta] = \alpha^2 \Var [\X]$ \hfill $\Var [\X] = \Cov [\X,\X]$\\[0.5em]
+	$\Var \left[\sum \limits_{i=1}^n \X_i \right] = \sum \limits_{i=1}^{n} \Var [\X_i] + \sum\limits_{j \not= i} \Cov[\X_i, \X_j]$\\
+	\textbf{Standard Abweichung:} $\sigma = \sqrt{\Var[\X]}$
+\end{sectionbox}
+
+\begin{sectionbox}
+\subsection{Kovarianz}
+	Maß für den linearen Zusammenhang zweier Variablen
+	\begin{emphbox}
+		$\Cov [\X,\Y] = \E[(\X- \E[\X])(\Y - \E[\Y])^\top] = $\\[0.5em]
+		$ = \E [\X\Y^\top] - \E[\X] \E[\Y]^\top = \Cov[\Y, \X]$
+	\end{emphbox}
+	$\Cov [\alpha \X + \beta, \gamma \Y + \delta] = \alpha \gamma \Cov [\X, \Y]$ \\
+	$\Cov [ \X + \textit U, \Y + \textit V] = \Cov [\X, \Y] + \Cov [\X, \textit V] + \Cov [\textit U, \Y] + \Cov [\textit U, \textit V]$ \\
+
+	\subsubsection{Korrelation = standardisierte Kovarianz}
+	$\rho(\X,\Y) = \frac{\Cov[\X,\Y]}{\sqrt{\Var[\X] \cdot \Var[\Y]}} = \frac{C_{x,y}}{σ_x \cdot σ_y}$ \qquad $\rho(\X,\Y) ∈ [-1;1]$
+
+	\subsubsection[Kovarianzmatrix]{Kovarianzmatrix für $\vec z = (\vec x, \vec y)^\top$}
+	$\Cov[\vec z] = \ma C_{\vec z} = \mat{C_{\X} & C_{\X\!\Y} \\ C_{\X\!\Y} & C_{\Y}} = \mat{\Cov[\X,\X] & \Cov[\X,\Y] \\ \Cov[\Y,\X] & \Cov[\Y,\Y]}$\\
+	Immer symmetrisch: $C_{xy} = C_{yx}$! Für Matrizen: $\ma C_{\vec x \vec y} = \ma C_{\vec y \vec x}^\top$
+\end{sectionbox}
+
+% \begin{sectionbox}
+% 	\subsection{Schiefe (3. zentrales Moment)}
+% 	Maß für die Asymmetrie einer Wahrscheinlichkeitsverteilung.\\
+% 	$v(\X) = \E\left[ \left( \frac{\X - \E[\X]}{\sqrt{\Var[\X]}} \right)^3 \right]$ \qquad \parbox{4cm}{$v(\X) < 0$: links schief/flacher \\ $v(\X) > 0$: rechts schief/flacher}
+% \end{sectionbox}
+
+
+% \begin{sectionbox}
+% 	\subsection{Momente}
+% 	\begin{tablebox}{ll}
+% 	Erwartungswert & $\mu_{\X}(n) = E[\X_n]$\\
+% 	Varianzfolge & $\sigma^2_{\X}(n) = Var[\X_n] = E[\X_n^2] - E[\X_n]^2$\\
+% 	Autokorrelation & $r_{\X}(k,l) = E[\X_k \X_l]$\\
+% 	Autokovarianzf. & $c_{\X}(k,l) = Cov[\X_k,\X_l]$ \newline $= r_{\X}(k,l) - \mu_{\X}(k) \mu_{\X}(l)$\\
+% 	\end{tablebox}
+% \end{sectionbox}

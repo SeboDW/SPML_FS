@@ -1,0 +1,144 @@
+\section{Estimation}
+%
+
+\begin{sectionbox}
+	\subsection{Estimation}
+	Statistic Estimation treats the problem of inferring underlying characteristics of unknown random
+variables on the basis of observations of outputs of those random variables.
+
+	\begin{tablebox}{lll}
+		Sample Space $Ω$ & nonempty set of outputs of experiment\\
+		Sigma Algebra $\mathbb F \subseteq 2^Ω$ & set of subsets of outputs (events)\\
+		Probability $\P: \mathbb F \mapsto [0,1]$ & \\
+		Random Variable $\X: Ω \mapsto \mathbb X$ & mapped subsets of $Ω$\\
+		Observations: $x_1, \ldots, x_N$ & single values of $\X$\\
+		Observation Space $\mathbb X$ & possible observations of $\X$\\
+		Unknown parameter $θ ∈ Θ$ & parameter of propability function\\
+		Estimator $\T: \mathbb X \mapsto Θ$ & $\T(\X) = \hat{θ}$, finds $\hat{θ}$ from $\X$\\
+	\end{tablebox}
+
+	\begin{symbolbox}
+		unknown parm. $θ$ \qquad estimation of param. $\hat{θ}$\\
+		R.V. of param. $Θ$ \qquad estim. of R.V. of parm $\textit T(\X) = \hat {Θ}$
+	\end{symbolbox}
+
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Quality Properties of Estimators}
+	Consistent: If $\lim\limits_{N \ra ∞} \T(x_1, \ldots, x_N) = θ$\\
+	Bias $\Bias(\T) := \E [\T(\X_1, \ldots, \X_N)] - θ$ \\
+	unbiased if $\Bias(\T)=0$ (biased estimators can provide better estimates than unbiased estimators.)\\
+	Variance $\Var[\T] := \E\left[ (\T − \E[\T])^2 \right]$
+\end{sectionbox}
+
+
+
+\begin{sectionbox}
+	\subsection{Mean Square Error (MSE)}
+	The MSE is an extension of the Variance $\Var[\T] := \E\left[ (\T − \E[\T])^2 \right]$:\\
+	\begin{emphbox}
+		MSE: $ε[\T] = \underset{=\E[(\hat{θ}-θ)^2]}{\E\left[(\T − θ)^2\right]} = \Var(\T) + (\mathrm{Bias}[\T])^2$
+	\end{emphbox}
+	If $Θ$ is also r.v. $\Ra$ mean over both (e.g. Bayes est.):\\
+	\textbf{Mean MSE:} $\E[(\T(\X)-Θ)^2] = \E\left[\E\left[(\T(\X) − Θ)^2|Θ=θ\right]\right]$
+
+	\subsubsection{Minimum Mean Square Error (MMSE)}
+	Minimizes mean square error: $\underset{\hat{θ}}{\arg\min} \E\left[(\hat{θ} − θ)^2\right]$\\
+	$\E\left[(\hat{θ} − θ)^2\right] = \E[θ^2] - 2\hat{θ} \E[θ] + \hat{θ}^2$\\
+	Solution: $\frac{\diff}{\diff \hat{θ}} \E\left[(\hat{θ} − θ)^2\right] \stackrel{!}{=} 0 = - 2\E[θ] + 2\hat{θ}$\quad$\Ra$ $\hat{θ}_{\ir MMSE}=\E[θ]$
+
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Maximum Likelihood}
+	Given model $\{\mathbb X, \mathbb F, \P_θ ; θ ∈ Θ\}$, assume $\P_θ(\vec x)$ or $f_{\vec {\X}}(\vec x,θ)$ for observed data $\vec x$. Estimate parameter $θ$ so that the likelihood $L(\vec x,θ)$ or $L(θ|\X=\vec x)$ to obtain $\vec x$ is maximized.\\
+	\\
+	\textbf{Likelihood Function:} (Prob. for $θ$ given $\vec x$)\\
+	\begin{tabular}{@{}ll}
+		Discrete: & $L(x_1, \ldots, x_N; θ) = \P_θ(x_1, \ldots, x_N)$\\
+		Continuous: & $L(x_1, \ldots, x_N; θ) = f_{\X_1, ... , \X_N}(x_1, \ldots, x_N, θ)$\\
+	\end{tabular}
+	%Likelihood functions often in log scale \\
+	%Prob. dens. to get $\vec x$ with $θ$ is used as parameter\\
+	If $N$ observations are Identically Independently Distributed (i.i.d.):\\
+	$L(\vec x, θ) = \prod\limits_{i=1}^N \P_θ(x_i) = \prod\limits_{i=1}^N f_{\X_i}(x_i)$\\
+	\\
+	\textbf{ML Estimator} (Picks $θ$): $\T_{\ir ML} : \X \mapsto \underset{θ ∈ Θ}{\argmax} \{ L(\X,θ) \} = $\\
+	$= \underset{θ ∈ Θ}{\argmax} \{ \log L(\vec{\X},θ) \} \stackrel{\text{i.i.d.}}{=} \underset{θ ∈ Θ}{\argmax} \big\{ \sum \log L(x_i,θ) \big\}$\\
+	%If known $\vec x$ are fixed, $L$ only depends on $θ$\\
+	Find Maximum: $\frac{∂ L(\vec x,θ)}{∂ θ} = \left. \frac{\diff}{\diff θ} \log L(x; θ) \right|_{θ = \hat \theta} \stackrel{!}{=} 0$\\
+	Solve for $θ$ to obtain ML estimator function $\hat{θ}_{\ir ML}$\\
+
+		Check quality of estimator with MSE\\
+	Maximum-Likelihood Estimator is Asymptotically Efficient. However, there might be not enough samples and the likelihood function is often not known.
+
+\end{sectionbox}
+
+
+
+\begin{sectionbox}
+	\subsection{Uniformly Minimum Variance Unbiased (UMVU) Estimators (Best unbiased estimators)}
+	Best unbiased estimator: Lowest Variance of all estimators.\\
+	Fisher’s Information Inequality: Estimate lower bound of variance if
+	\begin{itemize}
+		\item $L(x,θ) > 0, ∀x,θ$
+		\item $L(x,θ)$ is diffable for $θ$
+		\item $\int_{\mathbb X} \frac{\partial}{\partial θ} L(x,θ) \diff x = \frac{\partial}{\partial θ} \int_{\mathbb X} L(x,θ) \diff x$\
+	\end{itemize}
+	\textbf{Score Function:}\\
+	$g(x, θ) = \frac{\partial}{\partial θ} \log L(x,θ) = \frac{\frac{\partial}{\partial θ} L(x,θ)}{L(x,θ)}$ \qquad $\E[g(x,θ)] = 0$\\
+	\textbf{Fischer Information:} \\
+	$I_{\ir F}(θ) := \Var[g(\X,θ)] = \E[g(x,θ)^2] = -\E\left[ \frac{\partial^2}{\partial θ^2} \log L(\X, θ) \right]$\\
+	\textbf{Cramér-Rao Lower Bound (CRB):}\quad (if $\T$ is unbiased)
+	\begin{emphbox}
+		$\Var[\T(\X)] \ge \left( \frac{\partial \E[\T(\X)]}{\partial θ}\right)^2 \frac{1}{I_{\ir F}(θ)}$ \qquad $\Var[\T(\X)] \ge \frac{1}{I_{\ir F}(θ)}$
+	\end{emphbox}
+	For $N$ i.i.d. observations: $I_{\ir F}^{(N)}(x,θ) = N \cdot I_{\ir F}^{(1)}(x,θ)$
+	\subsubsection{Exponential Models}
+	If $f_{\X}(x) = \frac{h(x)\exp\big(a(θ)t(x)\big)}{\exp(b(θ))}$ then $I_F(θ) = \frac{∂a(θ)}{∂θ} \frac{∂ E[t(\X)]}{∂ θ}$\\
+	\\
+	\textbf{Some Derivations:} (check in exam)\\
+	Uniformly: Not diffable $\Ra$ no $I_F(θ)$\\
+	Normal $\mathcal N(θ,σ^2)$: $g(x,θ) = \frac{(x-θ)}{σ^2}$ \quad $I_{\ir F}(θ) = \frac{1}{σ^2}$\\
+	Binomial $\mathcal B(θ,K)$: $g(x,θ) = \frac{x}{θ} - \frac{K-x}{1-θ}$ \quad $I_{\ir F}(θ)=\frac{K}{θ(1-θ)}$
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Bayes Estimation (Conditional Mean)}
+	A Priori information about $θ$ is known as probability $f_Θ(θ; σ)$ with random variable $Θ$ and parameter $σ$.
+	Now the conditional pdf $f_{\X|Θ}(x,θ)$ is used to find $θ$ by minimizing the mean MSE instead of uniformly MSE.
+	Mean MSE for $Θ$: $\E\left[\E[(\textit T(\X)-Θ)^2|Θ=θ]\right]$
+
+	\textbf{Conditional Mean Estimator:}\\
+	$\textit T_{\ir CM}: x \mapsto \E[Θ|\X = x] = \int_{Θ} θ \cdot f_{Θ|\X}(θ|x)\diff θ$\\
+	Posterior $f_{Θ|\vec {\X}}(θ|\vec x) = \frac{f_{\vec {\X}|Θ}(\vec x) f_{θ}(θ)}{\int_{Θ} f_{\vec {\X},\xi}(\vec x, ξ) \diff ξ } = \frac{f_{\vec {\X}|θ}(\vec x) f_{θ}(θ)}{f_{\X}(x)}$\\[1em]
+	\textbf{Hint:} to calculate $f_{Θ|\vec {\X}}(θ|\vec x)$: Replace every factor not containing $θ$, such as $\frac{1}{f_{\X}(x)}$ with a factor $γ$ and determine $γ$ at the end such that $\int_{Θ} f_{Θ|\vec {\X}}(θ|\vec x) \diff θ = 1$\\
+	MMSE: $\E[\Var[\X|Θ=θ]]$\\
+	\\
+	\textbf{Multivariate Gaussian:} $\X,Θ \sim \mathcal N$ \quad $\Ra σ_{\X}^2 = σ^2_{\X|Θ=θ} + σ_Θ$\\
+	$\T_{\ir CM}: x \mapsto \E[Θ|\X = x] = \vec{μ}_Θ + \ma C_{Θ,\X} \ma C^{−1}_{\X} (\vec x − \vec {μ}_{\X} )$\\
+	MMSE:\\$\E\left[ \norm{\T_{\ir CM} − Θ}^2_2 \right] = \operatorname{tr}(\ma C_{θ|\X}) = \operatorname{tr}(\ma C_{Θ} - \ma C_{Θ,\X} \ma C^{−1}_{\X} \ma C_{\X,Θ})$\\
+	\\
+	\textbf{Orthogonality Principle:}\\
+	$\T_{\ir CM}(\vec{\X}) − Θ \perp h(\vec \X)$ \quad $\Ra$ \quad  $\E[(\textit T_{\ir CM}(\vec{\X}) − Θ)h(\vec{\X})] = 0$
+
+
+	\textbf{MMSE Estimator:} $\hat{θ}_{\ir MMSE} = \underset{θ ∈ Θ}{\arg \min}$ MSE\\
+	minimizes the MSE for all estimators
+\end{sectionbox}
+
+
+
+\begin{sectionbox}
+	\subsection{Example:}
+	Estimate mean $θ$ of $\X$ with prior knowledge $θ ∈ Θ\sim \mathcal N$:\\
+	$\X \sim \mathcal N(θ,σ^2_{\X|Θ=θ})$ and $Θ \sim \mathcal N(m, σ^2_Θ)$\\
+	$\hat{θ}_{\ir CM} = \E[Θ|\vec{\X} = \vec x] = \frac{N σ^2_Θ}{σ^2_{\X|Θ=θ} + N σ^2_Θ} \hat{θ}_{\ir ML} +\frac{σ^2_{\X|Θ=θ} }{σ^2_{\X|Θ=θ}+N σ^2_Θ} m$\\
+	\\
+	For $N$ independent observations $x_i$: $\hat{θ}_{\ir ML} = \frac1N \sum x_i$\\
+	Large $N \Ra$ ML better, small $N \Ra $ CM better\\
+\end{sectionbox}

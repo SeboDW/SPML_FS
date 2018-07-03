@@ -1,0 +1,85 @@
+\section{Recursive Estimation}
+
+\begin{sectionbox}
+	\subsection{Kalman-Filter}
+	recursively calculates the most likely state from previous state estimates and current observation. Shows
+	optimum performance for Gauss-Markov Sequences.\\
+
+	\textbf{State space:}\\
+	$\vec x_n = \ma G_n \vec x_{n−1} + \ma B \vec u_n + \vec v_n$\\
+	$\vec y_n = \ma H_n \vec x_{n} + \vec w_n$\\
+	\\
+	With gaussian process/measurement noise $\vec v_n/\vec w_n$\\
+	Short notation: $\E[\vec x_n|\vec y_{n-1}] = \hat {\vec x}_{n|n-1}$ \quad $\E[\vec x_n|\vec y_{n}] = \hat {\vec x}_{n|n}$\\
+	$\E[\vec y_n|\vec y_{n-1}] = \hat {\vec y}_{n|n-1}$ \quad $\E[\vec y_n|\vec y_{n}] = \hat {\vec y}_{n|n}$\\
+	\\
+	\textbf{1. step: Prediction}\\
+	Mean: $\hat {\vec x}_{n|n-1} = \ma G_n \hat{\vec x}_{n-1|n-1}$\\
+	Covariance: $\ma C_{\vec x_{n|n-1}} = \ma G_n \ma C_{\vec x_{n-1|n-1}} \ma G_n^\top + \ma C_{\vec v}$\\
+	\\
+	\textbf{2. step: Update}\\
+	Mean: $\hat{\vec x}_{n|n} = \hat{\vec x}_{n|n-1} + \ma K_n \left( \vec y_n - \ma H_{n} \hat{\vec x}_{n|n-1} \right)$\\
+	Covariance: $\ma C_{\vec x_{n|n}} = \ma C_{\vec x_{n|n-1}} + \ma K_n \ma H_{n} \ma C_{\vec x_{n|n-1}}$\\
+
+
+	$\hat{\vec x}_{n|n} = \underbrace{\hat{\vec x}_{n|n-1}}_{\hspace{-3em}{\text{estimation} \E[\X_n|\Y_{n-1} = y_{n-1} ]}} + \overbrace{ \ma K_n \underbrace{ \left( \vec y_n - \ma H_{n} \hat{\vec x}_{n|n-1} \right)}_{\text{innovation:} Δy_n}  }^{\text{correction:}\\ \E[\X_n|Δ\Y_n = y_n]}$\\[1em]
+	\\
+	With optimal \textbf{Kalman-gain} (prediction for $\vec x_n$ based on $\Delta y_n$): \\
+	$\ma K_n = \ma C_{\vec x_{n|n-1}} \ma H_{n}^\top ( \underbrace{\ma H_{n} \ma C_{\vec x_{n|n-1}} \ma H_{n}^\top + \ma C_{\vec w_{n}}}_{\ma C_{\delta y_n}})^{-1}$\\
+	\\
+	\textbf{Innovation}: closeness of the estimated mean value to the real value\\
+	$\Delta \vec y_n = \vec y_n - \hat{\vec y}_{n|n-1} =\vec y_n - \ma H_{n} \hat{\vec x}_{n|n-1}$\\
+	\\
+	\textbf{Init:} $\hat {\vec x}_{0|-1} = \E[\X_0] \qquad σ^2_{0|-1} = \Var[\X_0]$
+	\\
+	\textbf{MMSE Estimator:} $\hat{\vec x} = \int \vec x_n f_{\X_n | \Y_{(n)}} (\vec x_n | \vec y_{(n)}) \diff \vec x_n$\\
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	For non linear problems: Suboptimum nonlinear Filters: Extended KF, Unscented KF, ParticleFilter
+	\subsection{Extended Kalman (EKF)}
+	Linear approximation of non-linear $g, h$\\
+	$\vec x_n = g_n(\vec x_{n−1}, \vec v_n)$ \qquad $\vec v_n \sim \mathcal N$\\
+	$\vec y_n = h_n(\vec x_{n−1}, \vec w_n)$ \qquad $\vec w_n \sim \mathcal N$\\
+
+	\subsection{Unscented Kalman (UKF)}
+	Approximation of desired PDF $f_{\X_n\!|\!\Y_n}(x_n|y_n)$ by Gaussian PDF.
+
+
+\end{sectionbox}
+
+
+\begin{sectionbox}
+	\subsection{Particle-Filter}
+	For non linear state space \emph{and} non-gaussian noise
+
+	\textbf{Non-linear State space:}\\
+	$\vec x_n = g_n(\vec x_{n−1}, \vec v_n)$\\
+	$\vec y_n = h_n(\vec x_{n−1}, \vec w_n)$\\
+
+
+	\textbf{Posterior Conditional PDF:} $f_{\X_n\!|\!\Y_n}(x_n|y_n) \propto \overbrace{ f_{\Y_n\!|\!\X_n}(y_n|x_n) }^{\text{likelihood}} \cdot$\\
+	${ \displaystyle \cdot \int\limits_{\mathbb X} \underbrace{ f_{\X_n\!|\!\X_{n-1}}(x_n|x_{n-1}) }_{\text{state transition}} \underbrace{ f_{\X_{n-1}\!|\!\Y_{n-1}}(x_{n-1}|y_{n-1}) }_{\text{last conditional PDF}} \diff x_{n-1} }$
+
+
+	$N$ random Particles with particle weight $w_n^i$ at time $n$\\
+	\textbf{Monte-Carlo-Integration:}
+	$I = \E[g(\X)] \approx I_N = \frac{1}{N} \sum\limits_{i=1}^{N} \tilde g(x^i)$\\
+	\textbf{Importance Sampling:} Instead of $f_{\X}(x)$ use \textbf{Importance Density} $q_{\X}(x)$\\
+	$I_N = \frac{1}{N} \sum\limits_{i=1}^{N} \tilde w^i g(x^i)$ with weights $\tilde w^i = \frac{f_{\X}(x^i)}{q_{\X}(x^i)}$\\
+	If $\int f_{\X_n}(x) \diff x \ne 1$ then $I_N = \sum\limits_{i=1}^{N} \tilde w^i g(x^i)$\\
+\end{sectionbox}
+
+\begin{sectionbox}
+	\subsection{Conditional Stochastical Independence}
+	$\P(A \cap B | E) = \P(A | E) \cdot \P(B | E)$\\
+	\\
+	Given $\Y$, $\X$ and $\Z$ are independent if\\
+	$f_{\Z|\Y,\X} (z | y, x) = f_{\Z|\Y}(z|y)$ or\\
+	$f_{\X,\Z|\Y} (x,z|y) = f_{\Z|\Y}(z|y) \cdot f_{\X|\Y}(x|y)$\\
+	$f_{\Z|\X,\Y}(z|x,y) = f_{\Z|\Y}(z|y)$ or $f_{\X|\Z,\Y}(x|z,y) = f_{\X|\Y}(x|y)$
+
+
+
+\end{sectionbox}
