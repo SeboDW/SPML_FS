@@ -1,0 +1,30 @@
+\section{Learning and Generalization}
+
+\begin{sectionbox}
+	\subsection{Empirical Risk Function and Generalization Error}
+	ML scenarios (unknown Stochastical Model) base learning on:
+	$Risk_{emp}(T;\mathbb{S})=\frac{1}{M}\sum_{i=1}^{M}L(T(\vx_i),y_i),\quad(\vx_i,y_i)\in\mathbb{S}$
+	
+	$\vx\mapsto T(\vx;\mathbb{S})\quad T=\underset{T'\in\mathbb{T}}{\operatorname{argmin}}\{Risk_{emp}(T';\mathbb{S})\}$
+	
+	\textbf{good Generalization}: $Risk_{emp}(T;\mathbb{S}_{test})$ similar to $Risk_{emp}(T;\mathbb{S})$ 
+	\textbf{bad Generalization}:
+	\begin{itemize}
+		\item small $\mathbb{T}$ that does not cover $T_{opt}$ $\rightarrow$ cannot be selected by ML
+	\end{itemize}
+	$\Rightarrow$ strong mismatch between the desired and derived \textit{Test} and refers to a sort of \textit{Bias Error Term}
+	\begin{itemize}
+		\item too rich $\mathbb{T}$ $\rightarrow$ fluctuating of the available data (measurement noise) is interpreted as meaningful information
+	\end{itemize}
+	$\Rightarrow$ \textit{Overfitting}; leads to an increased \textit{Variance Error Term}
+	
+\end{sectionbox}
+
+\begin{sectionbox}
+	\subsection{Bias-Variance Decomposition}
+	$Risk=E_{S,X,Y}[L(T(X;S),Y)]=E_X[1-P_{Y|X}(Y=T_B(X))+(1-P_{S|X}(T(X;S)=T_B(X)))(2P_{Y|X}(Y=T_B(X))-1)],\quad T_B(X)$ is the unknown \textit{Bayes Test}
+	
+	If the potential set $\mathbb{S}$ would be selected from a distribution such that the derived Test $T(\vx; \mathbb{S})$ and the corresponding Bayes Test $T_B(\vx)$ are identical almost surely, then the Risk Function achieves its minimum value which is equal to the \textit{Irreducible Error} $E_X[1 − P_{Y|X}(Y = T_B(X))]$(denotes the probability that for a given input $\vx$ the Bayes Test $T_B(X)$
+	decides for the false label $y$).
+	
+\end{sectionbox}
