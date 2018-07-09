@@ -2,10 +2,29 @@
 
 \begin{sectionbox}
 	\subsection{CART Algorithms}
+	Generate Binary Trees by splitting $\mathbb X$ at each (internal/root) node: $\mathbb{X}_{i,left}=\{\vx\in\mathbb{X}_i|x_{j_i}<\tau_i\}\quad\mathbb{X}_{i,right}=\mathbb{X}_i\backslash\mathbb{X}_{i,left}$
+	
+	\textbf{Root/Internal node}: Binary decision based on chosen threshold $\tau_i\in\mathbb{R}$, feature $x_{j_i}=[\vx]_{j_i}$ with $j_i\in\mathbb{J}=\{1,...,dim[\mathbb{X}]\}$ aims at minimizing $Risk_{emp}(T_{CART})$
+	
+	\textbf{Terminal node}: $n_i$ corresponds to subset $\mathbb{X}_i\in\mathbb{X}$ $\rightarrow$ has no more children; outputs a decision
+	
+	$\Rightarrow \vx\mapsto n_i(\vx)$  
+	
+	\textbf{Empirical Impurity Measure}: choose $j_i$ and $\tau_i$ at $n_i$ by:
+	$I_{CART}(\mathbb{S}_i)=\sum_{k=1}^{K}(1-\hat{P}_{Y|X}(Y=\theta_k|\{\vx\in\mathbb{X}_i\};\mathbb{S}_i))\hat{P}_{Y|X}(Y=\theta_k|\{\vx\in\mathbb{X}_i\};\mathbb{S}_i)$
+	
+	with\\ $\hat{P}_{Y|X}(Y=\theta_k|\{\vx\in\mathbb{X}_i\};\mathbb{S}_i)=\frac{M_k(\mathbb{S}_i)}{M(\mathbb{S}_i)}=\frac{|\{(\vx,y)\in\mathbb{S}_i|y=\theta_k\}|}{|\mathbb{S}_i|}$
+	
+	$\Rightarrow \{j_i,\tau_i\}=\underset{j\in\mathbb{J},\tau\in\mathbb{R}}{\operatorname{argmin}}\Big\{\sum_{k=1}^{K}\Big(1-\frac{M_k(\mathbb{S}_{i,left})}{M(\mathbb{S}_{i,left})}\Big)\frac{M_k(\mathbb{S}_{i,left})}{M(\mathbb{S}_{i})}+\Big(1-\frac{M_k(\mathbb{S}_{i,right})}{M(\mathbb{S}_{i,right})}\Big)\frac{M_k(\mathbb{S}_{i,right})}{M(\mathbb{S}_{i})}\Big\}$
+	
+	
+	% TODO: Overfitting + Decision Rule
+	% TODO: Gini Impurity Index
+	
 	
 \end{sectionbox}
 
 \begin{sectionbox}
 	\subsection{Random Forests}	
-	
+	% TODO: RF
 \end{sectionbox}
