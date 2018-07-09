@@ -1,4 +1,5 @@
 \section{Learning and Generalization}
+% TODO: cleanup
 
 \begin{sectionbox}
 	\subsection{Empirical Risk Function and Generalization Error}
@@ -22,7 +23,7 @@
 
 \begin{sectionbox}
 	\subsection{Bias-Variance Decomposition}
-	$Risk=E_{S,X,Y}[L(T(X;S),Y)]=E_X[1-P_{Y|X}(Y=T_B(X))+(1-P_{S|X}(T(X;S)=T_B(X)))(2P_{Y|X}(Y=T_B(X))-1)],\quad T_B(X)$ is the unknown \textit{Bayes Test}
+	$Risk=E_{S,X,Y}[L(T(X;S),Y)]=E_X[1-P_{Y|X}(Y=T_B(X))+\boxed{(1-P_{S|X}(T(X;S)=T_B(X)))}(2P_{Y|X}(Y=T_B(X))-1)],\quad T_B(X)$ is the unknown \textit{Bayes Test}
 	
 	If the potential set $\mathbb{S}$ would be selected from a distribution such that the derived Test $T(\vx; \mathbb{S})$ and the corresponding Bayes Test $T_B(\vx)$ are identical almost surely, then the Risk Function achieves its minimum value which is equal to the \textit{Irreducible Error} $E_X[1 − P_{Y|X}(Y = T_B(X))]$(denotes the probability that for a given input $\vx$ the Bayes Test $T_B(X)$
 	decides for the false label $y$).
