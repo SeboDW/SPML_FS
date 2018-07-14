@@ -1,0 +1,38 @@
+\section{Support Vector Machines}
+
+	\paragraph{Motivation and Background}
+\begin{sectionbox}
+
+	\subsection{Kernel Methods} 
+	Kernel Methods is non-parametic estimation, these make no assumption on statistical model $\rightarrow$ purely Data-Based. \\
+	\textbf{Test Statistic} 
+	$\boxed{\mathbb{X} \rightarrow \mathbb{R}, \vx\mapsto S(\vx)= \sum_{k=1}^{M} \lambda_kg(\vx, \vec{\mu_k})}$ \\
+	linear combination of Kernel Function $g(.,\mu_k)$, g() generally non-linear pos. definite \\ %TODO: besser einrichten
+	
+	$\mu_k$: representative for Sample Set $\mathbb{S}=\{x_1,...,x_M\}$ \\  
+	$\lambda_k$: weight coefficient determined by learning \\
+	Sample Set $\mathbb{S}$ is Empirical Characterization of Unknown Statistical Model \\
+	Infernce of $\lambda_k$ based on Sample Set or Training Set is called \textbf{Learning}
+
+	
+%\end{sectionbox}
+
+%\begin{sectionbox}
+	\subsection{Kernel Tests}
+Statistical Hypothesis Test decomposes sample space $\mathbb{X}$ into two disjoint subsets, the relative postion of a sample $x_j$ to the seperating surface \\determines choice of hypothesis\\
+$\boxed{\mathbb{S} = \{(x_1, y_1),...,(x_M, y_M)\}}$ %TODO: Einrichten
+\\
+$x_i \in \mathbb{R}^N$, $y_i \in \{\Theta_0, \Theta_1\}$ \\
+Inference of Hypothesis Test based on a Sample Set that includes Labeling $y_i$ of the elements $x_i$ is called \textbf{Supervised Learning} \\
+$M \geq dim(\mathbb{X})$
+\subsection{Linear Kernels}
+\textbf{Test Statistic} for linear test \\
+$\boxed{S(x) = \sum_{i = 1}^{M}\lambda_i\vec{x_i}^T\vec{x} + wo = \vec{w}^T\vec{x} +wo}$ $\vec{w} = \sum_{i = 1}^{M}\lambda_ix_i$ \\
+Hyperplane defined by $\vec{w}$(normal vector or weight vector) and wo\\ approximates seperating surface between $\mathbb{X_-}$ and $\mathbb{X_+}$, therefor \\
+$\boxed{T(\vx) = sign(S(\vx)) = \begin{cases} 
+			+1&;\quad \vec{w}^T\vx +wo \geq 0\\
+	        -1&;\quad otherwise
+	\end{cases}}$\\ 
+%TODO: insert illustration of linear kernel test
+
+\end{sectionbox}
