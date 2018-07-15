@@ -104,6 +104,24 @@ y_1 & & \\
 
 \begin{sectionbox}
 	\subsection{Kernel Trick}
-	\textbf{Linear Hypothesis Test} often not sufficient: \textbf{Kernel Trick}: Generalize linear methods to non-linear approximation of seperating surfaces $(\{x|\log R(\mathbf{x})=c\})$ \\
+	\textbf{Linear Hypothesis Test} often not sufficient$\rightarrow$ \textbf{Kernel Trick}: Generalize linear methods to non-linear approximation of seperating surfaces $(\{x|\log R(\mathbf{x})=c\})$ \\
 	Basic Idea: Transfer problem statement into higher-dimensional space(without introducing additional degrees of freedom) by \textbf{Feature Map} $\varphi: \mathbb{S}\rightarrow\mathbb{S}_{\varphi}$
-\end{sectionbox}	--
+	\\ 
+	$\boxed{\langle\varphi(\mathbf{x}),\varphi(\mathbf{y})\rangle=:g(\mathbf{x,y})}$ \\
+	Linear kernel in $\mathbb{X}_\varphi$ represents nonlinear kernel in $\mathbb{X} \rightarrow$ choose g(.,.) directly instead of finding transformation $\varphi$  \\
+	In Optimization Problem and resulting Dual Function and Variables \\replace $\mathbf{x}$ by $\varphi(\mathbf{x}_k)$ $\rightarrow$ Dual OP: $\smash{\displaystyle\max_{\mathbf{u}\geq0}}\{-\mathbf{u^TYGYu +1^Tu}\}\\$ \\
+	Kernel Matrix G = $\begin{bmatrix}
+		g(\mathbf{x_1,x_2}) &\cdots& g(\mathbf{x_1,x_M}) \\
+		\vdots&&\vdots \\
+		g(\mathbf{x_M,x_1}) &\cdots& g(\mathbf{x_M,x_M}) 
+	\end{bmatrix} \in \mathbb{R}^{MxM}$ \\
+	Hypothesis Test: $\boxed{T:\mathbf{x}\mapsto sign(\sum_{k=1}^{M}u_k^*y_kg(\mathbf{x_k,x}))}$\\
+	\textbf{Kernel Trick}: OP and Nonlinear Test T only based on Kernel Function g, transformation $\varphi$ becomes obsolete
+\end{sectionbox}
+\begin{sectionbox}
+	\paragraph{Possible Kernels for Kernel Trick}
+	Linear Kernel: $g_{lin}(\mathbf{x},\mathbf{x}_k)=\mathbf{x}_k^T\mathbf{x}$\\
+	Polynomial Kernel:$g_{poly}(\mathbf{x},\mathbf{x}_k)=(\mathbf{x}_k^T\mathbf{x}+1)^d$\\
+	Sigmoid Kernel: $g_{sigm}(\mathbf{x},\mathbf{x}_k)=\tanh(\beta(\mathbf{x_k^Tx})+w_0)$ \\
+	Radial Kernel: $g_{rbf}(\mathbf{x},\mathbf{x}_k)=\exp(-\frac{1}{2\sigma^2}\norm{\mathbf{x-x_k}}_2^2)$
+\end{sectionbox}	
