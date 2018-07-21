@@ -35,22 +35,24 @@
 	\end{cases}$\\
 	\textbf{ML Test}:\\	
 	$T_{\ir ML} : \mathbb{X} \mapsto \{0,1\}, x\mapsto \begin{cases}
-		1&;\quad R(X)>c\\
+		1&;\quad R(X)>c = 1\\
 		0&;\quad$ otherwise
 	$\end{cases}$\\
+	if $R(x)$ is monotonous then it is possible to make a decision by directly comparing $x$ to a threshold $x_{\alpha}$ and every $R(x) ≥ c(α)$ will lead to a unique threshold for $x_α < x$ \\
 	if $c \ne 1$ False Alarm Error Probability can be adjusted $\rightarrow$ Neyman Pearson Test
 \end{sectionbox}
 
 \begin{sectionbox}
 	\subsection{Neyman-Pearson-Test}
-	The best test of $\P_0$ against $\P_1$\\
+	minimizes the detection error, while fulfilling a predefined error level $\alpha$\\
+	$\underset{d_{\text{NP}}}{\text{argmax}}\E[d_{\text{NP}}(x)|\theta = \theta_1]\quad \text{s.t.} \quad E[d_{\text{NP}}(x)|\theta = \theta_0] ≤ \alpha$\\
 	NP-Test to the error level $\alpha$:\\
-	%$x_{\alpha}$ is chosen as: $x_{\alpha} = (1-\alpha)$-quantile of $f_x(x;\theta_0)$\\
-	If $P(\{R(x)=c;\theta_0\}) = f_{\X}(x_{\alpha}; θ_0)=0$:\\
+	$x_{\alpha}$ is chosen as: $x_{\alpha} = (1-\alpha)$-quantile of $f_x(x;\theta_0)$\\\\
+	If $P(\{R(x)=c;\theta_0\}) =0 \leftrightarrow$ (if $x$ is continous):\\
 	\parbox{15em}{$T_{\ir NP}(x) = \begin{cases} 1 & R(x) > c\\ 0 & R(x) < c \end{cases}$}
-	\quad\quad \parbox{15em}{ Likelihood-Ratio: \\ $R(x) = \frac{f_{\X}(x; θ_1)}{f_{\X}(x; θ_0)}$ }\\
-	If $P(\{R(x)=c;\theta_0\}) = f_{\X}(x_{\alpha}; θ_0)>0$:\\
-	\parbox{15em}{$T_{\ir NP}(x) = \begin{cases} 1 & R(x) > c\\ γ & R(x) = c \\ 0 & R(x) < c \end{cases}$,}\\ 
+	\quad\quad \parbox{15em}{ Likelihood-Ratio: \\ $R(x) = \frac{f_{\X}(x; θ_1)}{f_{\X}(x; θ_0)}$ }\\\\
+	If $P(\{R(x)=c;\theta_0\}) >0$:\\
+	\parbox{30em}{$T_{\ir NP}(x) = \begin{cases} 1 & R(x) > c\\ γ & R(x) = c, \quad \text{(randomized decision)}\\ 0 & R(x) < c \end{cases}$}\\ 
 	with $γ = \frac{α - P(\{R(x)>c;\theta_0\})}{P(\{R(x)=c;\theta_0\})}$ \quad error level $α$\\
 	%Steps: For $α$ calculate $x_{α}$, then $c = R(x_{α})$\\
 	\\
@@ -65,10 +67,10 @@
 	\subsection{Bayes Test (MAP Test)}
 	Prior knowledge about possible hypotheses:\\$\P(\{θ ∈ Θ_0 \}) + \P(\{θ ∈ Θ_1\}) =  1 $\\ 
 	$T_{\ir Bayes} = \underset{T}{\operatorname{argmin}}\{P_{\epsilon}\}= 
-	\begin{cases} 1 &;\quad\!\frac{f_{X}(x|θ_1)}{f_{X}(x|θ_0)} > c\\
+	\begin{cases} 1 &;\quad\!\frac{f_{X}(x|θ_1)}{f_{X}(x|θ_0)} > c = \frac{P(\theta_0)}{P(\theta_1)}\\
 	0&;\quad\text{otherwise}\end{cases} \\= \begin{cases} 1&;\quad \P(θ_1|x) > \P(θ_0|x) \\ 0 &;\quad \text{otherwise} \end{cases}\\
 	\text{with}:\\ 
-	P_{\epsilon} = P(\theta_0)G_T(\theta_0)+P(\theta_1)(1-G_T(\theta_1)),\quad c = \frac{P(\theta_0)}{P(\theta_1)}$\\\\
+	P_{\epsilon} = P(\theta_0)G_T(\theta_0)+P(\theta_1)(1-G_T(\theta_1))$\\\\
 	\textbf{if} $P(\theta_0) = P(\theta_1) \implies T_{\ir Bayes} = T_{\ir ML}$\\\\
 	\textbf{Multiple Hypothesis} $\{\theta_0,...,\theta_k\}; \mathbb{X}_0,...,\mathbb{X}_k \in \mathbb{X}$:\\
 	$T_{\ir Bayes} = \underset{k\in1,...,K}{\operatorname{argmin}}\{P(\theta_k|x)\}$\\\\
