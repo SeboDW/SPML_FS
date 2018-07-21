@@ -28,7 +28,7 @@
  
 \begin{sectionbox}
 	\subsection{Maximum Likelihood Test}
-	\textbf{ML Ratio Test Statistic}:\\	
+	\textbf{ML Ratio Test Statistic (Likelihood Ratio)}:\\	
 	$R(x) = \begin{cases}
 		\frac{f_{\X}(x;θ_1)}{f_{\X}(x;θ_0)}&;\quad f_X(x;\theta_0)>0\\
 		\quad\quad\infty&;\quad f_X(x;\theta_0)=0$ and $f_X(x;\theta_1)>0
@@ -44,11 +44,15 @@
 \begin{sectionbox}
 	\subsection{Neyman-Pearson-Test}
 	The best test of $\P_0$ against $\P_1$\\
-	%NP-Test to the level $\alpha$:
-	%$c$ is chosen as: $c = (1-\alpha)-quantile of f_x(x;\theta_0)$
-	\parbox{15em}{$T_{\ir NP}(x) = \begin{cases} 1 & R(x) > c\\ γ & R(x) = c \\ 0 & R(x) < c \end{cases}$} \quad \parbox{15em}{ Likelihood-Ratio: \\ $R(x) = \frac{f_{\X}(x; θ_1)}{f_{\X}(x; θ_0)}$ }\\
-	$γ = \frac{α - \P_0(\{R > c\})}{\P_0(\{R = c\})}$ \quad Errorlevel $α$\\
-	Steps: For $α$ calculate $x_{α}$, then $c = R(x_{α})$\\
+	NP-Test to the error level $\alpha$:\\
+	%$x_{\alpha}$ is chosen as: $x_{\alpha} = (1-\alpha)$-quantile of $f_x(x;\theta_0)$\\
+	If $P(\{R(x)=c;\theta_0\}) = f_{\X}(x_{\alpha}; θ_0)=0$:\\
+	\parbox{15em}{$T_{\ir NP}(x) = \begin{cases} 1 & R(x) > c\\ 0 & R(x) < c \end{cases}$}
+	\quad\quad \parbox{15em}{ Likelihood-Ratio: \\ $R(x) = \frac{f_{\X}(x; θ_1)}{f_{\X}(x; θ_0)}$ }\\
+	If $P(\{R(x)=c;\theta_0\}) = f_{\X}(x_{\alpha}; θ_0)>0$:\\
+	\parbox{15em}{$T_{\ir NP}(x) = \begin{cases} 1 & R(x) > c\\ γ & R(x) = c \\ 0 & R(x) < c \end{cases}$,}\\ 
+	with $γ = \frac{α - P(\{R(x)>c;\theta_0\})}{P(\{R(x)=c;\theta_0\})}$ \quad error level $α$\\
+	%Steps: For $α$ calculate $x_{α}$, then $c = R(x_{α})$\\
 	\\
 	\includegraphics[width = \columnwidth]{tests}
 	

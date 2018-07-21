@@ -14,7 +14,7 @@ variables on the basis of observations of outputs of those random variables.
 		Observations: $x_1, \ldots, x_N$ & single values of $\X$\\
 		Observation Space $\mathbb X$ & possible observations of $\X$\\
 		Unknown parameter $θ ∈ Θ$ & parameter of propability function\\
-		Estimator $\T: \mathbb X \mapsto Θ$ & $\T(\X) = \hat{θ}$, finds $\hat{θ}$ from $\X$\\
+		Estimator $T: \mathbb X \mapsto Θ$ & $T(\X) = \hat{θ}$, finds $\hat{θ}$ from $\X$\\
 	\end{tablebox}
 
 	\begin{symbolbox}
@@ -27,22 +27,22 @@ variables on the basis of observations of outputs of those random variables.
 
 \begin{sectionbox}
 	\subsection{Quality Properties of Estimators}
-	Consistent: If $\lim\limits_{N \ra ∞} \T(x_1, \ldots, x_N) = θ$\\
-	Bias $\Bias(\T) := \E [\T(\X_1, \ldots, \X_N)] - θ$ \\
-	unbiased if $\Bias(\T)=0$ (biased estimators can provide better estimates than unbiased estimators.)\\
-	Variance $\Var[\T] := \E\left[ (\T − \E[\T])^2 \right]$
+	Consistent: If $\lim\limits_{N \ra ∞} T(x_1, \ldots, x_N) = θ$\\
+	Bias $\Bias(T) := \E [T(\X_1, \ldots, \X_N)] - θ$ \\
+	unbiased if $\Bias(T)=0$ (biased estimators can provide better estimates than unbiased estimators.)\\
+	Variance $\Var[T] := \E\left[ (T − \E[T])^2 \right]$
 \end{sectionbox}
 
 
 
 \begin{sectionbox}
 	\subsection{Mean Square Error (MSE)}
-	The MSE is an extension of the Variance $\Var[\T] := \E\left[ (\T − \E[\T])^2 \right]$:\\
+	The MSE is an extension of the Variance $\Var[T] := \E\left[ (T − \E[T])^2 \right]$:\\
 	\begin{emphbox}
-		MSE: $ε[\T] = \underset{=\E[(\hat{θ}-θ)^2]}{\E\left[(\T − θ)^2\right]} = \Var(\T) + (\mathrm{Bias}[\T])^2$
+		MSE: $ε[T] = \underset{=\E[(\hat{θ}-θ)^2]}{\E\left[(T − θ)^2\right]} = \Var(T) + (\mathrm{Bias}[T])^2$
 	\end{emphbox}
 	If $Θ$ is also r.v. $\Ra$ mean over both (e.g. Bayes est.):\\
-	\textbf{Mean MSE:} $\E[(\T(\X)-Θ)^2] = \E\left[\E\left[(\T(\X) − Θ)^2|Θ=θ\right]\right]$
+	\textbf{Mean MSE:} $\E[(T(\X)-Θ)^2] = \E\left[\E\left[(T(\X) − Θ)^2|Θ=θ\right]\right]$
 
 	\subsubsection{Minimum Mean Square Error (MMSE)}
 	Minimizes mean square error: $\underset{\hat{θ}}{\arg\min} \E\left[(\hat{θ} − θ)^2\right]$\\
@@ -66,7 +66,7 @@ variables on the basis of observations of outputs of those random variables.
 	If $N$ observations are Identically Independently Distributed (i.i.d.):\\
 	$L(\vec x, θ) = \prod\limits_{i=1}^N \P_θ(x_i) = \prod\limits_{i=1}^N f_{\X_i}(x_i)$\\
 	\\
-	\textbf{ML Estimator} (Picks $θ$): $\T_{\ir ML} : \X \mapsto \underset{θ ∈ Θ}{\argmax} \{ L(\X,θ) \} = $\\
+	\textbf{ML Estimator} (Picks $θ$): $T_{\ir ML} : \X \mapsto \underset{θ ∈ Θ}{\argmax} \{ L(\X,θ) \} = $\\
 	$= \underset{θ ∈ Θ}{\argmax} \{ \log L(\vec{\X},θ) \} \stackrel{\text{i.i.d.}}{=} \underset{θ ∈ Θ}{\argmax} \big\{ \sum \log L(x_i,θ) \big\}$\\
 	%If known $\vec x$ are fixed, $L$ only depends on $θ$\\
 	Find Maximum: $\frac{∂ L(\vec x,θ)}{∂ θ} = \left. \frac{\diff}{\diff θ} \log L(x; θ) \right|_{θ = \hat \theta} \stackrel{!}{=} 0$\\
@@ -92,9 +92,9 @@ variables on the basis of observations of outputs of those random variables.
 	$g(x, θ) = \frac{\partial}{\partial θ} \log L(x,θ) = \frac{\frac{\partial}{\partial θ} L(x,θ)}{L(x,θ)}$ \qquad $\E[g(x,θ)] = 0$\\
 	\textbf{Fischer Information:} \\
 	$I_{\ir F}(θ) := \Var[g(\X,θ)] = \E[g(x,θ)^2] = -\E\left[ \frac{\partial^2}{\partial θ^2} \log L(\X, θ) \right]$\\
-	\textbf{Cramér-Rao Lower Bound (CRB):}\quad (if $\T$ is unbiased)
+	\textbf{Cramér-Rao Lower Bound (CRB):}\quad (if $T$ is unbiased)
 	\begin{emphbox}
-		$\Var[\T(\X)] \ge \left( \frac{\partial \E[\T(\X)]}{\partial θ}\right)^2 \frac{1}{I_{\ir F}(θ)}$ \qquad $\Var[\T(\X)] \ge \frac{1}{I_{\ir F}(θ)}$
+		$\Var[T(\X)] \ge \left( \frac{\partial \E[T(\X)]}{\partial θ}\right)^2 \frac{1}{I_{\ir F}(θ)}$ \qquad $\Var[T(\X)] \ge \frac{1}{I_{\ir F}(θ)}$
 	\end{emphbox}
 	For $N$ i.i.d. observations: $I_{\ir F}^{(N)}(x,θ) = N \cdot I_{\ir F}^{(1)}(x,θ)$
 	\subsubsection{Exponential Models}
@@ -120,11 +120,11 @@ variables on the basis of observations of outputs of those random variables.
 	MMSE: $\E[\Var[\X|Θ=θ]]$\\
 	\\
 	\textbf{Multivariate Gaussian:} $\X,Θ \sim \mathcal N$ \quad $\Ra σ_{\X}^2 = σ^2_{\X|Θ=θ} + σ_Θ$\\
-	$\T_{\ir CM}: x \mapsto \E[Θ|\X = x] = \vec{μ}_Θ + \ma C_{Θ,\X} \ma C^{−1}_{\X} (\vec x − \vec {μ}_{\X} )$\\
-	MMSE:\\$\E\left[ \norm{\T_{\ir CM} − Θ}^2_2 \right] = \operatorname{tr}(\ma C_{θ|\X}) = \operatorname{tr}(\ma C_{Θ} - \ma C_{Θ,\X} \ma C^{−1}_{\X} \ma C_{\X,Θ})$\\
+	$T_{\ir CM}: x \mapsto \E[Θ|\X = x] = \vec{μ}_Θ + \ma C_{Θ,\X} \ma C^{−1}_{\X} (\vec x − \vec {μ}_{\X} )$\\
+	MMSE:\\$\E\left[ \norm{T_{\ir CM} − Θ}^2_2 \right] = \operatorname{tr}(\ma C_{θ|\X}) = \operatorname{tr}(\ma C_{Θ} - \ma C_{Θ,\X} \ma C^{−1}_{\X} \ma C_{\X,Θ})$\\
 	\\
 	\textbf{Orthogonality Principle:}\\
-	$\T_{\ir CM}(\vec{\X}) − Θ \perp h(\vec \X)$ \quad $\Ra$ \quad  $\E[(\textit T_{\ir CM}(\vec{\X}) − Θ)h(\vec{\X})] = 0$
+	$T_{\ir CM}(\vec{\X}) − Θ \perp h(\vec \X)$ \quad $\Ra$ \quad  $\E[(\textit T_{\ir CM}(\vec{\X}) − Θ)h(\vec{\X})] = 0$
 
 
 	\textbf{MMSE Estimator:} $\hat{θ}_{\ir MMSE} = \underset{θ ∈ Θ}{\arg \min}$ MSE\\
