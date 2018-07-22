@@ -10,6 +10,16 @@
 	\textbf{Terminal node}: $n_i$ corresponds to subset $\mathbb{X}_i\in\mathbb{X}$ $\rightarrow$ has no more children; outputs a decision
 	
 	$\Rightarrow \vx\mapsto n_i(\vx)$  
+
+\end{sectionbox}
+\begin{sectionbox}
+	
+	\textbf{Example:}
+
+	\includegraphics[width = \columnwidth]{CART_example}
+	
+\end{sectionbox}
+\begin{sectionbox}
 	
 	\textbf{Empirical Impurity Measure}: choose $j_i$ and $\tau_i$ at $n_i$ by:
 	$I_{CART}(\mathbb{S}_i)=\sum_{k=1}^{K}(1-\hat{P}_{Y|X}(Y=\theta_k|\{\vx\in\mathbb{X}_i\};\mathbb{S}_i))\hat{P}_{Y|X}(Y=\theta_k|\{\vx\in\mathbb{X}_i\};\mathbb{S}_i)$
