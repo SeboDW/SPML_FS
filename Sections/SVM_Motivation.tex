@@ -1,6 +1,6 @@
 \section{Support Vector Machines}
 
-	\paragraph{Motivation and Background}
+\paragraph{Motivation and Background}
 \begin{sectionbox}
 
 	\subsection{Kernel Methods} 
@@ -86,7 +86,7 @@ y_1 & & \\
  \vdots\\
  1
 \end{bmatrix} $ \\
-\\ Alternativ to approach above: \\
+Alternative to approach above: \\
 \textbf{Iterative Solution}:\\
 Choose one element $\mathbf{x}_k$ out of sample set $\mathbb{S}=\{\mathbf{x_1,...,x_M}\}$ and randomly set: \\
 $ u_k\leftarrow u_k+\max_\{\eta\frac{\partial\phi(\mathbf{u})}{\partial u_k},-u_k\}, \forall k$ \\
@@ -124,7 +124,7 @@ $\rightarrow$ instead of $\smash{\displaystyle\min_{\mathbf{w}}}\frac{1}{2}\math
 	\textbf{Linear Hypothesis Test} often not sufficient$\rightarrow$ \textbf{Kernel Trick}: Generalize linear methods to non-linear approximation of seperating surfaces $(\{x|\log R(\mathbf{x})=c\})$ \\
 	Basic Idea: Transfer problem statement into higher-dimensional space(without introducing additional degrees of freedom) by \textbf{Feature Map} $\varphi: \mathbb{S}\rightarrow\mathbb{S}_{\varphi}$
 	\\ 
- \includegraphics[width = \columnwidth]{kernel_trick} \\
+ %\includegraphics[width = \columnwidth]{kernel_trick} \\
  Construction of Linear Test in $\mathbb{R}^3$ correspondes to Non-Linear Test in $\mathbb{R}^2$\\
  $\boxed{T:\mathbb{R}^3\rightarrow\{-1,+1\},\varphi(\mathbf{x})\mapsto \begin{cases} +1 ;&\mathbf{w}_{\varphi}^T\varphi(\mathbf{x})\geq0\\
  -1;&otherwise \end{cases}}$ \\

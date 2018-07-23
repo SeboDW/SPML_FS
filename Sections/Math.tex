@@ -2,31 +2,6 @@
 % ======================================================================
 
 \begin{sectionbox}
-	\begin{tabular}{@{}llll}
-		$\pi \approx \num{3,14159}$ & $e \approx \num{2,71828}$ & $\sqrt{2} \approx \num{1,414}$ & $\sqrt{3} \approx \num{1,732}$ \\
-	\end{tabular}
-
-	\textbf{Binome, Trinome}\\
-	$(a\pm b)^2 = a^2 \pm 2ab + b^2$ \hfill $a^2 - b^2 = (a-b)(a+b)$\\
-	$(a \pm b)^3 = a^3 \pm 3a^2b + 3ab^2 \pm b^3$\\
-	$(a+b+c)^2 = a^2 + b^2 + c^2 + 2ab + 2ac + 2bc$
-	\\[0.5em]
-	\textbf{Folgen und Reihen}\\
-	$\underset{\text{Aritmetrische Summenformel}}{\sum \limits_{k=1}^{n} k = \frac{n (n+1)}{2}}$ \quad $\underset{\text{Geometrische Summenformel}}{\sum \limits_{k=0}^{n} q^k = \frac{1 - q^{n+1}}{1-q}}$ \quad $\underset{\text{Exponentialreihe}}{\sum\limits_{n = 0}^{\infty} \frac{\cx z^n}{n!} = e^{\cx z}}$\\
-	\\[0.5em]
-	\textbf{Mittelwerte} \quad ($\sum$ von $i$ bis $N$) \hfill {\small (Median: Mitte einer geordneten Liste)}\\
-	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}l@{\quad\ $\ge$}l@{\quad\ $\ge$}l}
-	$\underset{\text{Arithmetisches}}{\ol x_{\ir{ar}} = \frac{1}{N} \sum x_i}$ & $\underset{\text{Geometrisches Mittel}}{\ol x_{\ir{geo}} = \sqrt[N]{ \prod x_i }}$ & $\underset{\text{Harmonisches}}{\ol x_{\ir hm} = }\frac{N}{\sum \frac{1}{x_i}}$\\
-	\end{tabular*}
-	\\[0.5em]
-	\textbf{Ungleichungen:} \hfill Bernoulli-Ungleichung:  $(1+x)^n \ge 1+nx$\\
-	$\underset{\text{Dreiecksungleichung}}{\big|\! \abs{x}- \abs{y}\!\big| \le \abs{x \pm y} \le \abs{x} + \abs{y}}$ \hfill
-	$\underset{\text{Cauchy-Schwarz-Ungleichung}}{\left| \vec x^\top \bdot \vec y \right| \le \| \vec x\| \cdot \| \vec y\|}$
-	\\[0.5em]
-	\textbf{Mengen:} De Morgan: $\overline{A \capdot B} = \overline{A} \cupplus \overline{B}$ \hfill $\overline{A \cupplus B} = \overline{A} \capdot \overline{B}$
-\end{sectionbox}
-
-\begin{sectionbox}
 	\subsection[Exp. und Log.]{Exp. und Log.\ \ $e^x := \lim\limits_{n \rightarrow \infty} \left( 1 + \frac{x}{n} \right)^n \hfill e \approx 2,71828$}
 	\begin{tabular*}{\columnwidth}{@{\extracolsep\fill}lll@{}}
 		$a^x = e^{x \ln a}$ & $\log_a x = \frac{\ln x}{\ln a}$ & $\ln x \le x -1$\\
@@ -79,18 +54,6 @@
 	$\frac{\partial \vec x^\top \ma A \vec y}{\partial \ma A} = \vec x \vec y^\top$ \qquad $\frac{\partial \det( \ma B \ma A \ma C )}{\partial \ma A} = \det(\ma B \ma A \ma C) \left( \ma A^{-1} \right)^\top$
 \end{sectionbox}
 
-
-
-\begin{sectionbox}
-	\subsubsection{Ableitungsregeln ($\forall \lambda, \mu \in \mathbb R$)}
-	\begin{tabular}{@{}l@{\quad}ll@{}}
-		Linearität: & $(\lambda f + \mu g)' (x) = \lambda f'(x) + \mu g'(x_0)$  \\
-		Produkt: & $(f \cdot g)'(x) = f'(x) g(x) + f(x) g'(x)$\\
-		Quotient: & $\left(\frac{f}{g}\right)' (x) = \frac{g(x)f'(x) -f(x) g'(x)}{g(x)^2}$ \quad $\left(\frac{\text{NAZ}-\text{ZAN}}{\text{N}^2}\right)$\\
-		Kettenregel & $\left( f\bigl(g(x)\bigr) \right)' = f'\bigl(g(x)\bigr) g'(x)$\\
-	\end{tabular}
-\end{sectionbox}
-
 \begin{sectionbox}
 	\subsection{Integrale $\int e^x\mathrm dx = e^x = (e^x)'$}
 	%$\int_a^b f(x) \mathrm dx = F(b) - F(a)$\\
@@ -98,17 +61,6 @@
 	Partielle Integration: & $\int uw'=uw-\int u'w$\\
 	Substitution: & $\int f(g(x)) g'(x)\diff x=\int f(t)\diff t$
 	\end{tabular*}
-	\begin{tablebox}{@{\hspace{5mm}}c@{\extracolsep\fill}c@{\extracolsep\fill}c@{\hspace{5mm}}}
-		$F(x) - C$ & $f(x)$ & $f'(x)$ \\ \cmrule
-		$\frac{1}{q+1}x^{q+1}$ & $x^q$ & $qx^{q-1}$ \\[1em]
-		\raisebox{-0.2em}{$\frac{2\sqrt{ax^3}}{3}$} & $\sqrt{ax}$ & \raisebox{0.2em}{$\frac{a}{2\sqrt{ax}}$}\\
-		$x\ln(ax) -x$ & $\ln(ax)$ & $\textstyle \frac{1}{x}$\\
-		$\frac{1}{a^2} e^{ax}(ax- 1)$ & $x \cdot e^{ax}$ & $e^{ax}(ax+1)$ \\
-		$\frac{a^x}{\ln(a)}$ & $a^x$ & $a^x \ln(a)$ \\
-		$-\cos(x)$ & $\sin(x)$ & $\cos(x)$\\
-		$\cosh(x)$ & $\sinh(x)$ & $\cosh(x)$\\
-		$-\ln |\cos(x)|$ & $\tan(x)$ & $\frac{1}{\cos^2(x)}$ \\
-	\end{tablebox}
 
 	\begin{tabular*}{\columnwidth}{ll}
 	\multicolumn{2}{c}{$\int e^{at} \sin(bt) \diff t = e^{at} \frac{a \sin(bt) + b \cos(bt)}{a^2 + b^2}$}\\
@@ -116,6 +68,4 @@
 	$\int t e^{at} \diff t = \frac{at-1}{a^2} e^{at}$ & $\int x e^{ax^2} \diff x = \frac{1}{2a} e^{ax^2}$\\
 	\end{tabular*}
 
-	\subsubsection{Volumen und Oberfläche von Rotationskörpern um $x$-Achse}
-	$V = \pi \int_a^b f(x)^2 \mathrm dx$ \qquad \quad $O = 2 \pi \int_a^b f(x) \sqrt{1 + f'(x)^2} \mathrm dx$
 \end{sectionbox}
